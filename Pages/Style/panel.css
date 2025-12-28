@@ -1,0 +1,639 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333333;
+    line-height: 1.6;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 顶栏样式 */
+.top-bar {
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+/* 标题区域 */
+.title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 应用logo样式 */
+.app-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* 应用图标样式 */
+.app-icon-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+.title-area h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* 用户区域 */
+.user-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.user-info:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.nickname {
+    font-size: 16px;
+    color: #666666;
+}
+
+.expand-icon {
+    transition: transform 0.3s ease;
+    color: #666;
+    font-size: 18px;
+}
+
+.user-info.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.notification-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666666;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.notification-icon:hover {
+    color: #4CAF50;
+}
+
+/* 用户详情面板样式 */
+.user-details {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1000;
+}
+
+.user-details.open {
+    max-height: 320px;
+    opacity: 1;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* 登录信息过期提示样式 */
+.login-expired-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0;
+    gap: 12px;
+    color: #fff;
+}
+
+.expired-icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+.login-expired-message h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff9800;
+    margin: 0;
+}
+
+.login-expired-message p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+    max-width: 90%;
+    line-height: 1.5;
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 用户标签相关样式 */
+.user-tag-container {
+    display: block;
+    margin-top: 4px;
+    min-height: 20px;
+    line-height: 1;
+}
+
+.user-tag-image {
+    height: 20px;
+    width: auto;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer; /* 显示指针样式，表示可点击 */
+}
+
+.user-tag-text {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: pointer; /* 显示指针样式，表示可点击 */
+}
+
+/* 为标签添加轻微的悬停效果，不使用动画，仅改变透明度 */
+.user-tag-image:hover,
+.user-tag-text:hover {
+    opacity: 0.9;
+}
+
+/* 为不同类型的文本标签添加基本样式 */
+.user-tag-text.SVIP {
+    background-color: #FF6B6B;
+    color: white;
+}
+
+.user-tag-text.VIP {
+    background-color: #4ECDC4;
+    color: white;
+}
+
+.user-tag-text.FANS {
+    background-color: #FFD166;
+    color: #333;
+}
+
+.user-tag-text.USER {
+    background-color: #6C757D;
+    color: white;
+}
+
+/* 确保用户信息区域有足够的空间显示标签 */
+.user-info {
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 用户文本信息容器样式 */
+.user-text-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0; /* 允许内容自动换行 */
+}
+
+/* 用户详情面板样式已优化，移除按钮相关样式 */
+
+.logout-btn {
+    width: calc(100% - 32px);
+    margin: 12px 16px 16px 16px;
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e74c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.logout-btn:hover {
+    background-color: #fef2f2;
+    border-color: #e74c3c;
+    color: #c0392b;
+    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.1);
+}
+
+.logout-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(231, 76, 60, 0.1);
+}
+
+.divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 5px 0;
+    width: 100%;
+}
+
+/* 主体容器 */
+.main-container {
+    display: flex;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+/* 左栏导航 */
+.left-sidebar {
+    width: 80px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    gap: 25px;
+}
+
+/* 导航项 */
+.nav-item {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666666;
+    position: relative;
+}
+
+.nav-item span {
+    position: absolute;
+    left: 75px;
+    white-space: nowrap;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.nav-item span::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent #333 transparent transparent;
+}
+
+.nav-item:hover span {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-item:hover {
+    background-color: #f0f0f0;
+    color: #4CAF50;
+}
+
+.nav-item.active {
+    background-color: #e8f5e9;
+    color: #4CAF50;
+}
+
+.nav-item i {
+    font-size: 24px;
+}
+
+.notification-icon i {
+    font-size: 24px;
+}
+
+/* 右栏内容区 */
+.content-area {
+    flex: 1;
+    background-color: #fafafa;
+    position: relative;
+    overflow: hidden;
+}
+
+#content-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 添加装饰元素 - 增强与白色背景的区分 */
+.panel-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50, #2196F3, #9C27B0);
+}
+
+/* 应用图标样式 */
+.app-icon {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.app-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题样式 - 改进对比度 */
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 段落样式 - 改进可读性 */
+p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.7;
+    max-width: 700px;
+}
+
+/* 状态信息样式 - 更突出 */
+.status-info {
+    margin-top: 40px;
+    padding: 25px 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #4CAF50;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    min-width: 300px;
+}
+
+.status-info:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.status-info p {
+    color: #4CAF50;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.sub-status {
+    color: #6c757d !important;
+    font-weight: 400 !important;
+    font-size: 1em !important;
+    margin-bottom: 0 !important;
+}
+
+/* 功能介绍区域样式 */
+.features-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* 底部信息样式 */
+.footer-info {
+    margin-top: auto;
+    padding-top: 40px;
+    opacity: 0.7;
+}
+
+.footer-info p {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+/* 添加更多视觉层次 */
+.panel-container>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* 添加一些背景细节 */
+.panel-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .panel-container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .status-info {
+        margin-top: 30px;
+        padding: 20px;
+    }
+}
+
+/* 标签样式 - 用于displayUserTagImage函数 */
+.text-tag {
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* 头像图片样式 - 用于updateAvatar函数 */
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* 用户名首字母样式 - 用于displayUsernameInitial函数 */
+.avatar-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e0e0e0;
+    color: #666;
+    font-weight: bold;
+}
+
+/* iframe错误页面样式 - 用于setupIframeErrorHandling函数 */
+.iframe-error-page {
+    padding: 40px;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    text-align: center;
+}
+
+.iframe-error-page h2 {
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+.iframe-error-page p {
+    font-size: 16px;
+    color: #666;
+}

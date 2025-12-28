@@ -1,0 +1,743 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 视图容器和视图样式 */
+#views-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow-y: auto;
+    background-color: #ffffff;
+}
+
+.view.active {
+    display: block;
+}
+
+/* 右下角悬浮窗样式 */
+.floating-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-view-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #2c3e50;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-view-btn:hover {
+    background-color: #34495e;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.switch-view-btn:active {
+    transform: scale(0.95);
+}
+
+/* 视图2内容样式 */
+.view-header {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.view-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.view-subtitle {
+    font-size: 14px;
+    color: #95a5a6;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.view-content {
+    padding: 20px;
+}
+
+/* 同局玩家列表样式 */
+.same-game-players {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 0;
+    align-items: center;
+    width: 100%;
+}
+
+/* 队伍容器样式 */
+.team-container-simple {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-bottom: 20px;
+    width: 90%; /* 设置为页面宽度的90% */
+}
+
+/* 队伍标题样式 */
+.team-header-simple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #3B82F6;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 0 12px 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 队伍玩家容器样式 */
+.team-players-simple {
+    padding: 20px 20px 20px 20px;
+    margin-top: 10px; /* 为队伍标题留出空间 */
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+}
+
+.player-card-simple {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+    min-width: 280px;
+    flex: 1;
+    margin-right: 16px;
+}
+
+.player-card-simple:last-child {
+    margin-right: 0;
+}
+
+.player-card-simple:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.player-info-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.player-name-simple {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1E293B;
+}
+
+.player-tag-simple {
+    font-size: 14px;
+    color: #64748B;
+    margin-top: 4px;
+    display: block;
+}
+
+.player-stats-simple {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding-top: 16px;
+}
+
+.stat-item-simple {
+    text-align: left;
+}
+
+.stat-label-simple {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748B;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.stat-value-simple {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+    display: block;
+}
+
+.stat-value-simple.profit {
+    color: #10B981;
+}
+
+.stat-value-simple.loss {
+    color: #EF4444;
+}
+
+/* 加载消息样式 */
+.loading-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: #95a5a6;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 空状态样式 */
+.empty-players {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: #95a5a6;
+    font-size: 16px;
+}
+
+.empty-players i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+    color: #7f8c8d;
+}
+
+.container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 页面标题样式 */
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: left;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+/* 头部操作区域 */
+.header-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 12px;
+}
+
+/* 返回按钮样式 */
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.back-button:active {
+    transform: translateY(0);
+}
+
+.back-button i {
+    font-size: 16px;
+}
+
+.refresh-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.refresh-button:hover {
+    background-color: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.refresh-button:active {
+    transform: translateY(0);
+}
+
+.refresh-button i {
+    font-size: 18px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E40AF;
+    margin-bottom: 8px;
+}
+
+/* 加载指示器样式 */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748B;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.loading-indicator i {
+    font-size: 16px;
+    color: #3B82F6;
+}
+
+/* 错误信息样式 */
+.error-message {
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #B91C1C;
+    margin-bottom: 24px;
+}
+
+.error-message i {
+    font-size: 20px;
+    color: #EF4444;
+}
+
+/* 空状态样式 */
+.empty-state {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 48px 20px;
+    text-align: center;
+    color: #64748B;
+    margin-bottom: 24px;
+}
+
+.empty-state i {
+    font-size: 48px;
+    color: #94A3B8;
+    margin-bottom: 16px;
+}
+
+/* 战斗详情主容器 */
+.battle-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 详情区域样式 */
+.detail-section {
+    margin-bottom: 24px;
+}
+
+/* 卡片样式 */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748B;
+}
+
+.card-icon {
+    font-size: 24px;
+    color: #3B82F6;
+}
+
+/* 卡片容器样式 */
+.cards-container {
+    display: flex;
+    gap: 16px;
+    margin-top: 0;
+    width: 100%;
+}
+
+/* 信息卡片样式 */
+.info-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-height: 90px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.info-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.info-card-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748B;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.info-card-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+    line-height: 1.4;
+}
+
+/* 基本信息卡片特殊样式 */
+.detail-section.card {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+/* 详情网格样式（保留，可能在其他地方使用） */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #64748B;
+    font-weight: 400;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #1E293B;
+    font-weight: 600;
+}
+
+/* 玩家容器样式 */
+.players-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* 玩家卡片样式 */
+.player-card {
+    background-color: #F8FAFC;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+}
+
+.player-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.player-card.current-user {
+    border: 2px solid #3B82F6;
+    background-color: #EFF6FF;
+}
+
+/* 玩家头部信息 */
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.player-tag {
+    font-size: 14px;
+    color: #64748B;
+}
+
+.player-result {
+    font-size: 16px;
+    font-weight: 600;
+    color: #10B981;
+    padding: 4px 12px;
+    background-color: #D1FAE5;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.player-result.loss {
+    color: #EF4444;
+    background-color: #FEF2F2;
+}
+
+/* 统计卡片容器样式 */
+.stats-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+/* 队伍容器样式 */
+.team-container {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.team-title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1E293B;
+}
+
+/* 统计卡片样式 */
+.stat-card {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.stat-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748B;
+    text-align: left;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E293B;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.stat-value.profit {
+    color: #10B981;
+}
+
+.stat-value.loss {
+    color: #EF4444;
+}
+
+/* 空消息样式 */
+.empty-message {
+    text-align: center;
+    color: #64748B;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+/* 显示/隐藏控制类 */
+.display-block {
+    display: block !important;
+}
+
+.display-flex {
+    display: flex !important;
+}
+
+.display-none {
+    display: none !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .players-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+    
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .players-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .player-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .player-result {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .stat-value {
+        font-size: 18px;
+    }
+}

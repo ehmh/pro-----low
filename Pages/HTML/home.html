@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="游戏数据统计分析面板">
+    <meta name="keywords" content="游戏,统计,数据分析,撤离率,击杀比">
+    <title>Mosuight - 游戏数据分析中心</title>
+    <link rel="stylesheet" href="../Style/home.css">
+    <!-- 添加Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1 class="page-title">个人数据</h1>
+            <button id="refresh-button" class="refresh-button">
+                <span class="fas fa-sync-alt"></span>
+                刷新数据
+            </button>
+            <p class="page-subtitle" id="season-info">赛季ID: -- · 最后更新: --</p>
+        </div>
+
+        <!-- 基础信息区 -->
+        <div class="basic-info">
+            <!-- 排位信息卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">排位信息</span>
+                    <span class="card-icon fas fa-award"></span>
+                </div>
+                <div class="main-value" id="rank-level">--</div>
+                <div class="card-content">
+                    <div class="progress-container">
+                        <div class="progress-text progress-header-text">
+                            <span>晋升下一段位进度</span>
+                            <span id="rank-progress-percentage">--%</span>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar" id="rank-progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <div class="progress-text progress-footer-text" id="rank-points">积分: --</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 撤离率卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">撤离率</span>
+                    <span class="card-icon fas fa-chart-bar"></span>
+                </div>
+                <div class="main-value" id="overall-escape-rate">--%</div>
+                <div class="stats-comparison">
+                    <div class="stat-item">
+                        <div class="stat-label">整体撤离率</div>
+                        <div class="stat-value" id="global-escape-rate">--%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">赛季撤离率</div>
+                        <div class="stat-value" id="season-escape-rate">--%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 总击杀比卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">总击杀比</span>
+                    <span class="card-icon fas fa-gamepad"></span>
+                </div>
+                <div class="main-value" id="global-kd">--</div>
+                <div class="stats-comparison">
+                    <div class="stat-item">
+                        <div class="stat-label">总击杀数</div>
+                        <div class="stat-value" id="global-total-kill">--</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">赛季击杀</div>
+                        <div class="stat-value" id="season-total-kill">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 总游戏时长卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">总游戏时长</span>
+                    <span class="card-icon fas fa-clock"></span>
+                </div>
+                <div class="main-value" id="global-duration">--</div>
+                <div class="stats-comparison">
+                    <div class="stat-item">
+                        <div class="stat-label">本赛季烽火地带</div>
+                        <div class="stat-value" id="season-duration-firezone">--</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">本赛季全面战场</div>
+                        <div class="stat-value" id="season-duration-tdm">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容区域容器 -->
+        <div class="content-container">
+            <!-- 烽火地带 -->
+            <div class="fire-zone">
+                <div class="zone-header">
+                    <div class="zone-title">
+                        <span class="zone-title-icon fas fa-users"></span>
+                        烽火地带
+                    </div>
+                    <div class="zone-battle-count" id="firezone-total-fight">--场战斗</div>
+                </div>
+
+                <!-- 顶部统计卡片 -->
+                <div class="zone-top-stats">
+                    <div class="stat-card">
+                        <div class="stat-main" id="firezone-escape-rate">--%</div>
+                        <div class="stat-label">逃脱率</div>
+                        <div class="stat-detail" id="firezone-escape-detail">--/--场</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-main" id="firezone-avg-kill">--</div>
+                        <div class="stat-label">场均击杀</div>
+                        <div class="stat-detail" id="firezone-total-kill">总击杀--</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-main" id="firezone-total-gained-price">--</div>
+                        <div class="stat-label">总收益</div>
+                        <div class="stat-detail" id="firezone-mandelbrick">携带曼德尔砖:--</div>
+                    </div>
+                </div>
+
+                <!-- 图表区域 -->
+                <div id="fireZoneChart" class="zone-chart"></div>
+
+                <!-- 底部统计卡片 -->
+                <div class="zone-bottom-stats">
+                    <div class="bottom-stat-card">
+                        <div class="stat-main" id="firezone-hit-rate">--%</div>
+                        <div class="stat-label">命中率</div>
+                    </div>
+                    <div class="bottom-stat-card">
+                        <div class="stat-main" id="firezone-headshot-rate">--%</div>
+                        <div class="stat-label">爆头率</div>
+                    </div>
+                    <div class="bottom-stat-card">
+                        <div class="stat-main" id="firezone-normal-kd">--</div>
+                        <div class="stat-label">普通KD</div>
+                    </div>
+                    <div class="bottom-stat-card">
+                        <div class="stat-main" id="firezone-secret-kd">--</div>
+                        <div class="stat-label">机密KD</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他模式 -->
+            <div class="other-modes">
+                <!-- 全面战场 -->
+                <div class="full-battlefield">
+                    <div class="zone-header">
+                        <div class="zone-title">
+                            <span class="zone-title-icon fas fa-mountain"></span>
+                            全面战场
+                        </div>
+                        <div class="zone-battle-count" id="tdm-total-fight">--场战斗</div>
+                    </div>
+
+                    <!-- 胜率进度 -->
+                    <div class="progress-stat">
+                        <div class="progress-stat-header">
+                            <span class="progress-stat-label">胜率</span>
+                            <span class="progress-stat-value" id="tdm-win-rate">--%</span>
+                        </div>
+                        <div class="progress-stat-bar">
+                            <div class="progress-stat-fill" id="tdm-win-rate-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- KD比率进度 -->
+                    <div class="progress-stat">
+                        <div class="progress-stat-header">
+                            <span class="progress-stat-label">KD比率</span>
+                            <span class="progress-stat-value" id="tdm-kd">--</span>
+                        </div>
+                        <div class="progress-stat-bar">
+                            <div class="progress-stat-fill" id="tdm-kd-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 简单统计 -->
+                    <div class="simple-stats">
+                        <div class="simple-stat-item">
+                            <div class="simple-stat-value" id="tdm-total-kill">--</div>
+                            <div class="simple-stat-label">总击杀</div>
+                        </div>
+                        <div class="simple-stat-item">
+                            <div class="simple-stat-value" id="tdm-mvp">--</div>
+                            <div class="simple-stat-label">MVP次数</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 黑鹰坠落 -->
+                <div class="black-hawk-down">
+                    <div class="zone-header">
+                        <div class="zone-title">
+                            <span class="zone-title-icon fas fa-helicopter"></span>
+                            黑鹰坠落
+                        </div>
+                        <div class="zone-battle-count not-participated" id="raid-total-fight">未参与</div>
+                    </div>
+
+                    <!-- 无数据状态 -->
+                    <div class="no-data" id="raid-no-data">
+                        <div class="no-data-icon fas fa-info-circle"></div>
+                        <div class="no-data-text">暂无数据<br>快去战场磨炼获取战绩吧！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../Asset/Resource/Libs/echarts.min.js"></script>
+    <script src="../JavaScript/home.js"></script>
+</body>
+
+</html>

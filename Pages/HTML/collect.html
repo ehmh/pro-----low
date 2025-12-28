@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="游戏收获统计页面">
+    <meta name="keywords" content="游戏,统计,收获,收益">
+    <title>Mosuight - 本周收获统计</title>
+    <link rel="stylesheet" href="../Style/collect.css">
+    <!-- 添加Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1 class="page-title">本周收获统计</h1>
+            <button id="refresh-button" class="refresh-button">
+                <span class="fas fa-sync-alt"></span>
+                刷新数据
+            </button>
+            <p class="page-subtitle" id="update-info">更新时间: --</p>
+        </div>
+        <!-- 基础信息区 -->
+        <div class="basic-info">
+            <!-- 总收益卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">总收益</span>
+                    <span class="card-icon fas fa-dollar-sign"></span>
+                </div>
+                <div class="main-value" id="total-earnings">--</div>
+            </div>
+
+            <!-- 出红数量卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">出红数量</span>
+                    <span class="card-icon fas fa-certificate"></span>
+                </div>
+                <div class="main-value" id="red-items-count">--</div>
+            </div>
+
+            <!-- 出金数量卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">出金数量</span>
+                    <span class="card-icon fas fa-award"></span>
+                </div>
+                <div class="main-value" id="gold-items-count">--</div>
+            </div>
+        </div>
+
+        <!-- 内容区域容器 -->
+        <div class="content-container">
+            <!-- 收获展示容器 -->
+            <div class="harvest-display">
+                <div class="zone-header">
+                    <div class="zone-title">
+                        <span class="zone-title-icon fas fa-box-open"></span>
+                        收获展示
+                    </div>
+                </div>
+                
+                <!-- 收获展示内容区域 -->
+                <div class="harvest-content">
+                    <!-- 这里可以放置收获展示的详细内容 -->
+                    <div class="no-data">
+                        <div class="no-data-icon fas fa-info-circle"></div>
+                        <div class="no-data-text">暂无收获数据<br>快去战场获取更多战利品吧！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../JavaScript/collect.Js"></script>
+</body>
+
+</html>

@@ -1,0 +1,837 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    min-height: 100vh;
+}
+
+/* 容器样式 */
+.container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 页面标题样式 */
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: left;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+/* 新的双栏容器样式 */
+.new-container {
+    margin-bottom: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E40AF;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: #94A3B8;
+}
+
+/* 当前订阅信息卡片 */
+.current-subscription {
+    margin-bottom: 30px;
+}
+
+.current-subscription h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.subscription-detail {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+}
+
+.plan-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.plan-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 5px;
+}
+
+.plan-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+/* Openid显示样式 */
+.user-openid {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.user-openid label {
+    color: #64748B;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.openid-value {
+    color: #1E293B;
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: #F1F5F9;
+    padding: 4px 8px;
+    border-radius: 6px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.openid-value:hover {
+    max-width: none;
+    overflow: visible;
+    white-space: normal;
+    word-break: break-all;
+    background-color: #E2E8F0;
+}
+
+.copy-btn {
+    padding: 4px 12px;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background-color: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.copy-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(59, 130, 246, 0.2);
+}
+
+/* 复制成功状态 */
+.copy-btn.copied {
+    background-color: #22C55E;
+}
+
+.copy-btn.copied:hover {
+    background-color: #16A34A;
+}
+
+/* 显示/隐藏按钮样式 */
+.toggle-btn {
+    padding: 4px 12px;
+    background-color: #6B7280;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.toggle-btn:hover {
+    background-color: #4B5563;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+}
+
+.toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(107, 114, 128, 0.2);
+}
+
+/* 确认按钮样式 */
+.confirm-btn {
+    background: none;
+    border: none;
+    color: #3B82F6;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+}
+
+/* 新的双栏容器样式 */
+.new-container {
+    margin-bottom: 30px;
+}
+
+.container-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1E40AF;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+/* 双栏容器样式 */
+.dual-column-container {
+    display: flex;
+    gap: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-height: 0;
+    align-items: stretch;
+}
+
+/* 左栏样式 */
+.left-column {
+    width: 30%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* 左栏内容样式 */
+.left-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 左栏二维码图片样式 */
+.left-qr-image {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* 左栏内容项样式 */
+.left-content-item {
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.left-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 12px;
+}
+
+.left-content p {
+    font-size: 14px;
+    color: #64748B;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 右栏样式 */
+.right-column {
+    width: 70%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 标签页样式 */
+.tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: none;
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 0;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: #F8FAFC;
+    border: none;
+    color: #64748B;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    position: relative;
+    z-index: 1;
+}
+
+.tab-btn:hover {
+    color: #3B82F6;
+    background-color: #EFF6FF;
+}
+
+.tab-btn.active {
+    color: #3B82F6;
+    background-color: #EFF6FF;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 标签页内容样式 */
+.tab-content {
+    background-color: white;
+    border-radius: 0;
+    padding: 24px;
+    border: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+}
+
+.tab-pane {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+}
+
+.tab-pane.active {
+    display: flex;
+}
+
+.tab-pane h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 16px;
+}
+
+.tab-pane p {
+    font-size: 14px;
+    color: #64748B;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+/* 高亮文本样式 */
+.highlight-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #991B1B;
+    background-color: #FEE2E2;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
+}
+
+/* 功能列表样式 */
+.tab-pane .feature-list {
+    list-style-type: disc;
+    margin-left: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.tab-pane .feature-list li {
+    margin-bottom: 10px;
+    color: #374151;
+    line-height: 1.6;
+    padding-left: 0;
+    position: static;
+    display: list-item;
+    min-height: auto;
+    font-size: 14px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dual-column-container {
+        flex-direction: column;
+    }
+    
+    .left-column,
+    .right-column {
+        width: 100%;
+    }
+}
+
+/* 确认按钮样式 */
+.confirm-btn {
+    background: none;
+    border: none;
+    color: #3B82F6;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: underline;
+}
+
+.confirm-btn:hover {
+    color: #2563EB;
+    text-decoration: none;
+}
+
+.status-indicator,
+.status-badge,
+.status-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* 根据用户标签渲染不同状态颜色 */
+.status-indicator.free,
+.status-badge.free,
+.status-tag.free {
+    background-color: #22C55E;
+    color: white;
+}
+
+.status-indicator.vip,
+.status-badge.vip,
+.status-tag.vip {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.status-indicator.svip,
+.status-badge.svip,
+.status-tag.svip {
+    background-color: #F59E0B;
+    color: white;
+}
+
+/* 粉丝共创状态样式 */
+.status-indicator.fans,
+.status-badge.fans,
+.status-tag.fans {
+    background-color: #8B5CF6;
+    color: white;
+}
+
+/* 确保状态标签在不同容器中的显示效果 */
+.subscription-info .status-tag {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-bottom: 8px;
+}
+
+.expiry-date {
+    color: #64748B;
+}
+
+.days-remaining {
+    color: #64748B;
+}
+
+.upgrade-btn {
+    padding: 10px 20px;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.upgrade-btn:hover {
+    background-color: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 24px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    position: relative;
+    border: none;
+    transition: all 0.3s ease;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #94A3B8;
+    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: none;
+    border: none;
+}
+
+.close-btn:hover {
+    color: #1E40AF;
+    background-color: #EFF6FF;
+    transform: scale(1.1);
+}
+
+/* 警告模态框样式 */
+.warning-container {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.warning-container h3 {
+    color: #1E40AF;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.warning-message {
+    color: #EF4444;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: #FEF2F2;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #E2E8F0;
+}
+
+.modal-actions button {
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.modal-actions .confirm-btn {
+    background-color: #3B82F6;
+    color: white;
+    text-decoration: none;
+}
+
+.modal-actions .confirm-btn:hover {
+    background-color: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    color: white;
+}
+
+.modal-actions .submit-btn {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.modal-actions .submit-btn:hover {
+    background-color: #2563EB;
+}
+
+.modal-actions .cancel-btn {
+    background-color: #F1F5F9;
+    color: #64748B;
+}
+
+.modal-actions .cancel-btn:hover {
+    background-color: #E2E8F0;
+    color: #374151;
+}
+
+/* 激活会员模态框样式 */
+.active-member-container {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.active-member-container h3 {
+    color: #1E40AF;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.active-member-container p {
+    color: #64748B;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1E293B;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3B82F6;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* 订单号提示文本样式 */
+.order-number-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #94A3B8;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* 激活会员按钮样式 */
+.active-member-btn {
+    padding: 10px 20px;
+    background-color: #10B981;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.active-member-btn:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* 按钮组样式 */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 左侧内容项初始状态 */
+.left-content-item {
+    display: none;
+    text-align: center;
+}
+
+.left-content-item.active {
+    display: block;
+}
+
+/* 默认内容项样式 */
+#default-left-content {
+    display: block;
+}
+
+/* OpenID相关元素初始状态 */
+.openid-value {
+    display: none;
+}
+
+.copy-btn {
+    display: none;
+}
+
+/* 模态框初始状态 */
+.modal {
+    display: none;
+}
+
+/* 爱发电支付按钮样式 */
+.afadian-pay-btn {
+    padding: 10px 20px;
+    background-color: #F59E0B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    align-self: flex-start;
+}
+
+.afadian-pay-btn:hover {
+    background-color: #D97706;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* 页脚 */
+.footer {
+    background-color: white;
+    padding: 25px 20px;
+    text-align: center;
+    border-top: 1px solid #E2E8F0;
+    font-size: 14px;
+    color: #94A3B8;
+    margin-top: 30px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .subscription-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .plan-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .upgrade-btn {
+        width: 100%;
+    }
+}

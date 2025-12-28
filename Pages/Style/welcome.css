@@ -1,0 +1,330 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    height: auto;
+    min-height: 100vh;
+}
+
+/* 容器通用样式 */
+.container {
+    width: 100%;
+    transition: transform 0.5s ease-out;
+}
+
+/* 容器1保持固定高度 */
+#container1 {
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.dynamic-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 动态背景容器 */
+.dynamic-bg .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 动态背景粒子样式 */
+.dynamic-bg .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float linear infinite;
+}
+
+/* 浮动动画 */
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(var(--x1), var(--y1)) rotate(var(--r1));
+    }
+
+    50% {
+        transform: translate(var(--x2), var(--y2)) rotate(var(--r2));
+    }
+
+    75% {
+        transform: translate(var(--x3), var(--y3)) rotate(var(--r3));
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* 内容包装器 */
+.content-wrapper {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.main-title {
+    font-size: 5rem;
+    color: #ff7f00;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+}
+
+/* 标签样式 */
+.beta-tag {
+    background-color: #1890ff;
+    color: white;
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    margin-left: 1rem;
+    font-weight: 500;
+    vertical-align: middle;
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollDown 2s infinite;
+    z-index: 10;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.scroll-hint span {
+    color: #3b82f6;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* 容器2样式 */
+#container2 {
+    background-color: #ffffff !important;
+    z-index: 3;
+    transform: translateY(100vh);
+    opacity: 1 !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow-y: visible;
+    will-change: transform;
+    min-height: 100vh;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.features-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 2rem 8rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #ff7f00;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* 特性卡片渐变背景 */
+.feature-item:nth-child(1) {
+    background: linear-gradient(135deg, #e6f7ff 0%, #ffffff 100%);
+}
+
+.feature-item:nth-child(2) {
+    background: linear-gradient(225deg, #f6ffed 0%, #ffffff 100%);
+}
+
+.feature-item:nth-child(3) {
+    background: linear-gradient(135deg, #fff2e8 0%, #ffffff 100%);
+}
+
+.feature-item:nth-child(4) {
+    background: linear-gradient(225deg, #f0f5ff 0%, #ffffff 100%);
+}
+
+.feature-item:nth-child(5) {
+    background: linear-gradient(135deg, #f9f0ff 0%, #ffffff 100%);
+}
+
+.feature-item:nth-child(6) {
+    background: linear-gradient(225deg, #e6fffb 0%, #ffffff 100%);
+}
+
+/* 偶数卡片布局 */
+.feature-item.even .feature-content {
+    text-align: right;
+    order: 1;
+}
+
+.feature-item.even .feature-image {
+    order: 0;
+}
+
+.feature-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    justify-content: center;
+    padding: 0 2rem;
+}
+
+/* 特性图片样式 */
+.feature-image {
+    flex: 0 0 280px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 8px;
+}
+
+/* 特性标题和图标 */
+.feature-title {
+    font-size: 1.75rem;
+    color: #000;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.feature-title i.material-icons {
+    color: #3b82f6;
+    font-size: 1.75rem !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* 偶数行图标位置 */
+.feature-item.even .feature-title {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    margin-left: auto;
+}
+
+.feature-desc {
+    color: #555;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.feature-item.even .feature-desc {
+    margin-left: auto;
+}
+
+/* 动画效果 */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scrollDown {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+        opacity: 0.7;
+    }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战斗详情</title>
+    <link rel="stylesheet" href="../Style/Details.css">
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 视图容器 -->
+    <div id="views-container">
+        <!-- 视图1 - 战斗详情 -->
+        <div id="view-1" class="view active">
+            <div class="container">
+                <!-- 页面标题 -->
+                <div class="page-header">
+                    <h1 class="page-title">战斗详情</h1>
+                    <div class="header-actions">
+                        <button id="back-button" class="back-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>返回</span>
+                        </button>
+                    </div>
+                    <div id="loading-indicator" class="loading-indicator">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>加载中...</span>
+                    </div>
+                </div>
+                
+                <!-- 错误信息 -->
+                <div id="error-message" class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="error-text">加载失败，请重试</span>
+                </div>
+                
+                <!-- 空状态 -->
+                <div id="empty-state" class="empty-state">
+                    <i class="fas fa-info-circle"></i>
+                    <span>没有找到战斗详情</span>
+                </div>
+                
+                <!-- 战斗详情内容 -->
+                <div id="battle-details" class="battle-details">
+                    <!-- 战斗基本信息 -->
+                    <div class="detail-section card">
+                        <div class="cards-container">
+                            <div class="info-card">
+                                <div class="info-card-label">房间ID</div>
+                                <div class="info-card-value" id="room-id">--</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-label">游戏地图</div>
+                                <div class="info-card-value" id="map-id">--</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-label">游戏模式</div>
+                                <div class="info-card-value" id="game-mode">--</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-label">开始时间</div>
+                                <div class="info-card-value" id="start-time">--</div>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-label">游戏时长</div>
+                                <div class="info-card-value" id="game-duration">--</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 我的战斗数据 -->
+                    <div class="detail-section card">
+                        <div class="card-header">
+                            <span class="card-title">我的战斗数据</span>
+                            <span class="card-icon fas fa-user"></span>
+                        </div>
+                        <div id="my-battle-data">
+                            <div class="empty-message">未找到您的战斗数据</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 队伍成员数据 -->
+                    <div class="detail-section card">
+                        <div class="card-header">
+                            <span class="card-title">队伍成员数据</span>
+                            <span class="card-icon fas fa-users"></span>
+                        </div>
+                        <div id="team-members-data" class="players-container">
+                            <!-- 队伍成员将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 视图2 - 同局玩家 -->
+        <div id="view-2" class="view">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">同局玩家</h1>
+                    <div class="header-actions">
+                        <button id="back-button-view2" class="back-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>返回</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="detail-section card">
+                    <div class="view-header">
+                        <h2 class="view-title">同局玩家</h2>
+                        <p class="view-subtitle">同局玩家是指同一局且使用本插件的玩家，本插件只会显示基本信息</p>
+                    </div>
+                    <div class="view-content">
+                        <div id="same-game-players" class="same-game-players">
+                            <!-- 同局玩家列表将通过JavaScript动态生成 -->
+                            <div class="loading-message">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>加载同局玩家信息中...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 右下角悬浮窗 -->
+    <div id="floating-window" class="floating-window">
+        <button id="switch-view-btn" class="switch-view-btn" title="切换视图">
+            <i class="fas fa-exchange-alt"></i>
+        </button>
+    </div>
+    </div>
+    
+    <!-- 玩家卡片模板 -->
+    <template id="player-card-template">
+        <div class="player-card">
+            <div class="player-header">
+                <div class="player-info">
+                    <div class="player-name"></div>
+                    <div class="player-tag"></div>
+                </div>
+                <div class="player-result"></div>
+            </div>
+            
+            <div class="stats-cards-container">
+                <!-- 统计卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </template>
+    
+    <!-- 视图2玩家卡片模板 -->
+    <template id="player-card-simple-template">
+        <div class="player-card-simple">
+            <div class="player-info-simple">
+                <div>
+                    <div class="player-name-simple"></div>
+                    <div class="player-tag-simple"></div>
+                </div>
+            </div>
+            <div class="player-stats-simple">
+                <div class="stat-item-simple">
+                    <div class="stat-label-simple">带入装备价值</div>
+                    <div class="stat-value-simple"></div>
+                </div>
+                <div class="stat-item-simple">
+                    <div class="stat-label-simple">带出总价值</div>
+                    <div class="stat-value-simple"></div>
+                </div>
+                <div class="stat-item-simple">
+                    <div class="stat-label-simple">盈亏数据</div>
+                    <div class="stat-value-simple"></div>
+                </div>
+                <div class="stat-item-simple">
+                    <div class="stat-label-simple">收集物总价值</div>
+                    <div class="stat-value-simple"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <script src="../JavaScript/Details.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Mosuight Pro",
+  "version": "1.1.2",
+  "description": "Mosuight For Chrome——三角洲行动玩家战绩分析助手",
+  "icons": {
+    "16": "Asset/Images/Icons/icon16.png",
+    "48": "Asset/Images/Icons/icon48.png",
+    "128": "Asset/Images/Icons/icon128.png"
+  },
+  "action": {
+    "default_icon": "Asset/Images/Icons/icon48.png"
+  },
+  "background": {
+    "service_worker": "Script/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.wegame.com.cn/helper/df/*"],
+      "js": ["Script/Content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+    "cookies",
+    "tabs",
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://users.qzone.qq.com/",
+    "https://www.mosuight.xyz/",
+    "https://playerhub.df.qq.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: https://playerhub.df.qq.com/ https://wegame.gtimg.com/ https://thirdqq.qlogo.cn/ https://thirdwx.qlogo.cn/; connect-src 'self' https://www.wegame.com.cn/ https://www.mosuight.xyz/ https://api.mosuight.xyz/"
+  },
+  "web_accessible_resources": [
+      {
+        "resources": [
+          "Pages/HTML/*",
+          "Pages/JavaScript/*",
+          "Asset/Images/Icons/*",
+          "Asset/Images/Web/*"
+        ],
+        "matches": ["<all_urls>"]
+      }
+    ]
+}

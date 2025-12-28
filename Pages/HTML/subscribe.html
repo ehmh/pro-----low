@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="订阅管理 - Mosuight Pro">
+    <meta name="keywords" content="订阅,会员,升级,权限">
+    <title>订阅管理 - Mosuight Pro</title>
+    <link rel="stylesheet" href="../Style/subscribe.css">
+    <!-- 添加Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1 class="page-title">订阅管理</h1>
+            <p class="page-subtitle">选择适合您的会员方案，解锁更多功能</p>
+        </div>
+
+        <!-- 当前订阅信息卡片 -->
+        <div class="current-subscription">
+            <h2>当前订阅</h2>
+            <div class="subscription-detail">
+                <div class="plan-info">
+                    <div class="plan-name" id="current-plan-name">免费版</div>
+                    <div class="plan-status">
+                        <span class="status-indicator" id="status-indicator">免费</span>
+                        <span class="expiry-date" id="expiry-date">到期: 2026-11-09 12:26</span>
+                        <span class="days-remaining" id="days-remaining">剩余 365 天</span>
+                    </div>
+                    <!-- 添加Openid显示区域 -->
+                    <div class="user-openid">
+                        <label>用户标识:</label>
+                        <button class="toggle-btn" id="toggle-openid">显示</button>
+                        <span id="user-openid" class="openid-value">加载中...</span>
+                        <button class="copy-btn" id="copy-openid">复制</button>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="upgrade-btn" id="upgrade-btn">立即升级</button>
+                    <!-- 激活会员按钮 -->
+                    <button class="active-member-btn" id="activeMemberBtn">激活会员</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新的双栏容器 -->
+        <div class="new-container">
+            <div class="container-header">
+                <h2>订购套餐</h2>
+            </div>
+            <div class="dual-column-container">
+                <!-- 左栏 30% 宽度 -->
+                <div class="left-column">
+                    <div class="left-content">
+                        <!-- 粉丝共创标签对应内容 -->
+                        <div id="fans-left-content" class="left-content-item">
+                            <img src="../../Asset/Images/Web/QU.png" alt="QQ群二维码" class="left-qr-image">
+                            <p>扫码加入粉丝群</p>
+                        </div>
+                        <!-- 荣誉会员内容 -->
+                        <div id="vip-left-content" class="left-content-item">
+                            <img src="../../Asset/Images/Web/QQ.png" alt="荣誉会员图片" class="left-qr-image">
+                            <p>扫码添加开发者好友</p>
+                        </div>
+                        <!-- 超级会员内容 -->
+                        <div id="svip-left-content" class="left-content-item">
+                            <img src="../../Asset/Images/Web/Afadian.png" alt="超级会员图片" class="left-qr-image">
+                            <p>扫码跳转会员购买页面（爱发电）</p>
+                        </div>
+                        <!-- 默认内容 -->
+                        <div id="default-left-content" class="left-content-item">
+                            <h3>会员权益</h3>
+                            <p>详细的会员权益说明将在这里显示</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右栏 70% 宽度 -->
+                <div class="right-column">
+                    <!-- 标签页 -->
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="fans">粉丝共创</button>
+                        <button class="tab-btn" data-tab="vip">荣誉会员</button>
+                        <button class="tab-btn" data-tab="svip">超级会员</button>
+                    </div>
+                    <!-- 标签页内容 -->
+                    <div class="tab-content">
+                        <div id="fans" class="tab-pane active">
+                            <h3>粉丝共创会员</h3>
+                            <p class="highlight-text">在粉丝群中入群时间超过15天的群成员申请后获得（活跃超10天）可以使用以下功能：</p>
+                            <ul class="feature-list">
+                                <li>基础功能</li>
+                                <li>个人数据页面完整展示</li>
+                                <li>数据分析报告完整展示</li>
+                            </ul>
+                        </div>
+                        <div id="vip" class="tab-pane">
+                            <h3>荣誉会员</h3>
+                            <p class="highlight-text">当前不再新增荣誉会员，若您曾在 2025 年 11 月 25 日前在任意平台完成任意金额捐赠 / 打赏，可联系我绑定后使用以下功能。</p>
+                            <ul class="feature-list">
+                                <li>基础功能</li>
+                                <li>个人数据页面完整展示</li>
+                                <li>数据分析报告完整展示</li>
+                                <li>更多新增功能完整使用</li>
+                            </ul>
+                        </div>
+                        <div id="svip" class="tab-pane">
+                            <h3>超级会员</h3>
+                            <p class="highlight-text">扫码跳转「爱发电」完成支付后，复制订单号并点击页面「激活会员」按钮，在弹窗中输入订单号即可自动绑定会员，畅享全功能无限制体验！</p>
+                            <ul class="feature-list">
+                                <li>基础功能</li>
+                                <li>个人数据页面完整展示</li>
+                                <li>数据分析报告完整展示</li>
+                                <li>更多新增功能完整使用</li>
+                            </ul>
+                            <button class="afadian-pay-btn" id="afadianPayBtn">前往爱发电支付</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 模态框 - 用于显示OpenID警告 -->
+    <div class="modal" id="openidWarningModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeOpenidWarning">&times;</span>
+            <div class="warning-container">
+                <h3>重要提示</h3>
+                <p class="warning-message">此 ID 仅官方售后及开发者需使用，请勿泄露给其他人员，否则可能导致您的 QQ、微信及游戏相关信息泄露。</p>
+                <div class="modal-actions">
+                    <button class="confirm-btn" id="confirmOpenidWarning">知道了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 - 用于激活会员 -->
+    <div class="modal" id="activeMemberModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeActiveMember">&times;</span>
+            <div class="active-member-container">
+                <h3>激活会员</h3>
+                <p>请输入订单号激活会员</p>
+                <div class="form-group">
+                    <label for="orderNumber">订单号</label>
+                    <input type="text" id="orderNumber" placeholder="请输入您的订单号">
+                    <p class="order-number-hint">您可以在爱发电的“我”->“订单”中找到此内容</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="cancel-btn" id="cancelActiveMember">取消</button>
+                    <button class="submit-btn" id="submitActiveMember">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入订阅页面的JavaScript逻辑 -->
+    <script src="../JavaScript/subscribe.Js"></script>
+</body>
+
+</html>

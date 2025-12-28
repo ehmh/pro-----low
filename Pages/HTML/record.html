@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="游戏战绩统计分析面板">
+    <meta name="keywords" content="游戏,战绩,统计,数据分析,对局记录">
+    <title>我的战绩 - Mosuight</title>
+    <link rel="stylesheet" href="../Style/record.css">
+    <!-- 添加Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1 class="page-title">我的战绩</h1>
+            <div class="header-actions">
+                <!-- 添加用户名筛选下拉框 -->
+                <select id="username-filter" class="username-filter" style="display: none; margin-right: 10px;">
+                    <option value="">全部用户</option>
+                </select>
+                <!-- 添加战绩数量输入框 -->
+                <div class="battle-count-input-group">
+                    <label for="battle-count-input">战绩数量：</label>
+                    <input type="number" id="battle-count-input" min="1" value="50" placeholder="50">
+                </div>
+                <!-- 添加加载战绩按钮 -->
+                <button id="load-battle-button" class="load-battle-btn">
+                    <span class="fas fa-sync-alt"></span>
+                    加载战绩
+                </button>
+            </div>
+            <!-- 添加批量删除按钮，放在header-actions外部但保持在右上角 -->
+            <div class="batch-delete-container">
+                <button id="batch-delete-button" class="batch-delete-btn">
+                    <span class="fas fa-trash-alt"></span>
+                    批量删除
+                </button>
+            </div>
+            <p class="page-subtitle">记录总数: <span id="record-count" class="record-count">0</span> 条</p>
+        </div>
+
+        <!-- 批量删除模态框 -->
+        <div id="batch-delete-modal" class="batch-delete-modal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>批量删除战绩</h3>
+                    <button id="batch-delete-close" class="modal-close-btn">
+                        <span class="fas fa-times"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-selection">
+                    <div class="selection-actions">
+                        <button id="select-all" class="select-action-btn">全选</button>
+                        <button id="select-none" class="select-action-btn">全不选</button>
+                        <span class="selected-count">已选择: <span id="selected-count-number">0</span> 条</span>
+                        <button id="batch-delete-table-btn" class="batch-delete-table-btn" style="display: none;">
+                            <span class="fas fa-trash-alt"></span>
+                            删除
+                        </button>
+                    </div>
+                    <div class="batch-delete-table-container">
+                        <table id="batch-delete-table" class="reports-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="batch-select-all"></th>
+                                        <th>序号</th>
+                                        <th>房间号</th>
+                                        <th>对局时间</th>
+                                        <th>地图名称</th>
+                                        <th>使用角色</th>
+                                        <th>带出价值</th>
+                                        <th>盈亏</th>
+                                        <th>撤离情况</th>
+                                        <th>击杀玩家</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="batch-delete-table-body">
+                                    <!-- 动态生成的批量删除表格内容 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="batch-delete-cancel" class="btn-cancel">取消</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 报告列表容器 -->
+        <div class="reports-container card">
+            <!-- 表格容器 -->
+            <div class="reports-table-wrapper">
+                <!-- 模态弹窗进度条 -->
+                <div id="progress-modal" class="progress-modal">
+                    <div class="progress-overlay"></div>
+                    <div class="progress-content">
+                        <div class="progress-header">
+                            <span>正在获取对局详情</span>
+                            <span id="progress-text">0/0</span>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div id="progress-fill" class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 自定义确认对话框 -->
+                <div id="confirm-modal" class="confirm-modal">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>确认操作</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p id="confirm-message">确定要执行此操作吗？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="confirm-cancel" class="btn-cancel">取消</button>
+                            <button id="confirm-ok" class="btn-confirm">确定</button>
+                        </div>
+                    </div>
+                </div>
+                <table class="reports-table">
+                    <!-- 表格头部 -->
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>房间号</th>
+                            <th>对局时间</th>
+                            <th>地图名称</th>
+                            <th>使用角色</th>
+                            <th>带出价值</th>
+                            <th>盈亏</th>
+                            <th>撤离情况</th>
+                            <th>击杀玩家</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="achievements-table-body">
+                        <!-- 表格内容将通过JavaScript动态生成 -->
+                        <!-- 加载状态 -->
+                        <tr id="loading-indicator" class="loading-indicator">
+                            <td colspan="10" style="text-align: center; padding: 40px;">
+                                <div class="spinner"></div>
+                                <p>加载战绩中...</p>
+                            </td>
+                        </tr>
+                        <!-- 错误状态 -->
+                        <tr id="error-message" class="error-message" style="display: none;">
+                            <td colspan="10" style="text-align: center; padding: 40px;">
+                                <p id="error-text" style="color: #EF4444;">加载失败，请刷新页面重试</p>
+                            </td>
+                        </tr>
+                        <!-- 空状态 -->
+                        <tr id="empty-state" class="empty-state" style="display: none;">
+                            <td colspan="10" style="text-align: center; padding: 40px;">
+                                <div class="no-data">
+                                    <div class="no-data-icon fas fa-info-circle"></div>
+                                    <div class="no-data-text">暂无战绩记录<br>快去战场磨炼获取战绩吧！</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="../JavaScript/record.js"></script>
+</body>
+
+</html>
